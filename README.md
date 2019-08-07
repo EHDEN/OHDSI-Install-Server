@@ -6,7 +6,7 @@ Note that if you are looking to deploy the environment with all tools installed 
 
 | AWS Region Code | Name | Launch |
 | --- | --- | ---
-| eu-west-1 |EU (Ireland)| [![cloudformation-launch-stack](images/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=OHDSI&templateURL=https://OHDSI-Install-Server-build.s3-eu-west-1.amazonaws.com/ohdsi-install-server.yaml) |
+| eu-west-1 |EU (Ireland)| [![cloudformation-launch-stack](images/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=OHDSI&templateURL=https://ohdsi-in-a-box-build.s3-eu-west-1.amazonaws.com/ohdsi-install-server.yaml) |
 
 This server has the following components installed:
 
