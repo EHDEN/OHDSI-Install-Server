@@ -1,14 +1,14 @@
 # Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. 
+# Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License.
 # A copy of the License is located at
 #    http://aws.amazon.com/apache2.0/
-# or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+# or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
 # either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 
 AWSTemplateFormatVersion: '2010-09-09'
-Description: This CloudFormation Template deploys a specified number of OHDSI-in-a-Box servers.
+Description: This CloudFormation Template deploys a specified number of OHDSI-Install-Server servers.
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -36,28 +36,28 @@ Metadata:
       AccessCidr:
         default: Limit access to IP address range?
       NumberofInstances:
-        default: Number of OHDSI-in-a-Box instances to deploy
+        default: Number of OHDSI-Install-Server instances to deploy
       InstanceType:
-        default: Instance type to use for each OHDSI-in-a-Box instance
+        default: Instance type to use for each OHDSI-Install-Server instance
       VolumeSizeGB:
-        default: Disk space for each OHDSI-in-a-Box instance
+        default: Disk space for each OHDSI-Install-Server instance
       VPC:
-        default: VPC in which to deploy the OHDSI-in-a-Box instances
+        default: VPC in which to deploy the OHDSI-Install-Server instances
       Subnet:
-        default: Subnet to deploy the OHDSI-in-a-Box instances
+        default: Subnet to deploy the OHDSI-Install-Server instances
 
 
 
 Parameters:
   AccessCidr:
     AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/([0-9]|[1-2][0-9]|3[0-2]))$
-    Description: '[ Required ] The CIDR IP range that is permitted to access your OHDSI-in-a-Box instances. Note: A value of 0.0.0.0/0 will allow access from ANY IP address.'
+    Description: '[ Required ] The CIDR IP range that is permitted to access your OHDSI-Install-Server instances. Note: A value of 0.0.0.0/0 will allow access from ANY IP address.'
     Type: String
     Default: 0.0.0.0/0
   NumberofInstances:
     Type: Number
     ConstraintDescription: Must be a number between 1 and 100.
-    Description: '[ Required ] Specifies the number of OHDSI-in-a-box AMIs to deploy.'
+    Description: '[ Required ] Specifies the number of OHDSI-Install-Server AMIs to deploy.'
     Default: 1
     MinValue: 1
     MaxValue: 100
@@ -65,26 +65,26 @@ Parameters:
     Type: String
     Description: '[ Required ] The size of each OHDSI in a box instance.  t2.medium is usually enough for a single training user.'
     AllowedValues:
-      - t2.medium 
-      - t2.large 
-      - t2.xlarge 
-      - t2.2xlarge 
-      - t3.medium 
-      - t3.large 
-      - t3.xlarge 
-      - t3.2xlarge 
-      - m5.large 
-      - m5.xlarge 
-      - m5.2xlarge 
-      - m5.4xlarge 
-      - m5.12xlarge 
-      - m5.24xlarge 
-      - r5.large 
-      - r5.xlarge 
-      - r5.2xlarge 
-      - r5.4xlarge 
-      - r5.8xlarge 
-      - r5.16xlarge 
+      - t2.medium
+      - t2.large
+      - t2.xlarge
+      - t2.2xlarge
+      - t3.medium
+      - t3.large
+      - t3.xlarge
+      - t3.2xlarge
+      - m5.large
+      - m5.xlarge
+      - m5.2xlarge
+      - m5.4xlarge
+      - m5.12xlarge
+      - m5.24xlarge
+      - r5.large
+      - r5.xlarge
+      - r5.2xlarge
+      - r5.4xlarge
+      - r5.8xlarge
+      - r5.16xlarge
       - g2.2xlarge
       - p2.xlarge
       - g3.4xlarge
@@ -94,7 +94,7 @@ Parameters:
       Default: 100
       MinValue: 100
       MaxValue: 16000
-      Description:  '[ Required ] Defines the disk size of the OHDSI-in-a-Box instance in GBs.  The minimum size is 100GB and the maximum size is 16,000GB (or 16TB)'
+      Description:  '[ Required ] Defines the disk size of the OHDSI-Install-Server instance in GBs.  The minimum size is 100GB and the maximum size is 16,000GB (or 16TB)'
   InstancePassword:
     AllowedPattern: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.{8,41}$)[a-zA-Z\d!@#]*$
     ConstraintDescription: 'Must have a length of 8-41 and be letters (upper and lower), at least 1 number, and optionally these special characters !@#'
@@ -105,53 +105,53 @@ Parameters:
     NoEcho: true
   VPC:
     Type: AWS::EC2::VPC::Id
-    Description: '[ Required ] The VPC that will be used for the OHDSI-in-a-box instances'
+    Description: '[ Required ] The VPC that will be used for the OHDSI-Install-Server instances'
   Subnet:
     Type: AWS::EC2::Subnet::Id
-    Description: '[ Required ] The VPC that will be used for the OHDSI-in-a-box instances'
+    Description: '[ Required ] The VPC that will be used for the OHDSI-Install-Server instances'
 
 
-#Mapping to find the OHDSI-in-a-box AMI in each region.
+#Mapping to find the OHDSI-Install-Server AMI in each region.
 Mappings:
   RegionMap:
-    us-east-1:
-      AMI: ami-0e3cf331376d436a6
+#    us-east-1:
+#      AMI: ami-0e3cf331376d436a6
 #    us-east-2:
-#      AMI: 
+#      AMI:
 #    us-west-1:
-#      AMI: 
+#      AMI:
 #    us-west-2:
-#      AMI: 
+#      AMI:
 #    ca-central-1:
-#      AMI: 
+#      AMI:
     eu-west-1:
-      AMI: ami-08bbc3487cf5a02a9
+      AMI: ami-0a895af789dd30705
 #    eu-west-2:
-#      AMI: 
+#      AMI:
 #    eu-west-3:
-#      AMI: 
+#      AMI:
 #    eu-central-1:
-#      AMI: 
+#      AMI:
 #    sa-east-1:
-#      AMI: 
+#      AMI:
 #    ap-south-1:
-#      AMI: 
+#      AMI:
 #    ap-southeast-1:
-#      AMI: 
+#      AMI:
 #    ap-southeast-2:
-#      AMI: 
-    ap-northeast-1:
-      AMI: ami-03386267e7d031671
+#      AMI:
+#    ap-northeast-1:
+#      AMI: ami-03386267e7d031671
 #    ap-northeast-2:
-#      AMI: 
+#      AMI:
 #    ap-northeast-3:
-#      AMI: 
+#      AMI:
 
 Resources:
   RDPSG:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Security Group for OHDSI-in-a-Box
+      GroupDescription: Security Group for OHDSI-Install-Server
       VpcId: !Ref VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
@@ -176,9 +176,9 @@ Resources:
       MaxCount: !Ref NumberofInstances
       SecurityGroupIds:
         - !GetAtt 'RDPSG.GroupId'
-      BlockDeviceMappings: 
+      BlockDeviceMappings:
         - DeviceName: "/dev/sda1"
-          Ebs: 
+          Ebs:
             VolumeSize: !Ref VolumeSizeGB
       UserData:
         Fn::Base64: !Sub |
@@ -192,7 +192,7 @@ Resources:
           </script>
       TagSpecifications:
         - ResourceType: "instance"
-          Tags: 
+          Tags:
           - Key: "Name"
             Value: !Sub 'OHDSIinaBox-${AWS::StackName}'
 
