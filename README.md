@@ -1,6 +1,6 @@
 ## OHDSI-Install-Server
 
-OHDSI-Install-Server is specifically created as a learning environment, and is used in the OHDSI Tools course in the [EHDEN academy](https://academy.ehden.eu). This course provides training on how to install all the OHDSI tools. It only includes Postgres and Notepad++ and the goal for the student is to install all the OHDSI tools.
+OHDSI-Install-Server is specifically created as a learning environment, and is used in the OHDSI Tools course in the [EHDEN academy](https://academy.ehden.eu). This course provides training on how to install all the OHDSI tools. The server only includes Postgres and Notepad++ and the goal for the student is to install all the OHDSI tools.
 
 Note that if you are looking to deploy the environment with all tools installed check out the [OHDSI-In-Box project](https://github.com/OHDSI/OHDSI-In-A-box). There is also an enterprise, scalable OHDSI architecture created in the [OHDSIonAWS project](https://github.com/OHDSI/OHDSIonAWS).  
 
