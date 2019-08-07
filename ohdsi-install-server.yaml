@@ -194,7 +194,7 @@ Resources:
         - ResourceType: "instance"
           Tags:
           - Key: "Name"
-            Value: !Sub 'OHDSIinaBox-${AWS::StackName}'
+            Value: !Sub 'OHDSIInstallServer-${AWS::StackName}'
 
   EC2InstancesFunction:
     Type: AWS::Lambda::Function
